@@ -1,0 +1,4 @@
+repository "STARSEU/STARSEU@20067611428463@cloud"
+  path "/"
+    br "/main"
+    co "/main"

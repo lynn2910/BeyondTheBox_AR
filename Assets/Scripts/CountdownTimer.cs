@@ -93,4 +93,19 @@ public class CountdownTimer : MonoBehaviour
         PlayerPrefs.DeleteKey(TimerPrefsKey);
         PlayerPrefs.Save();
     }
+
+    public void OverrideTimer(float newTimeInSeconds)
+    {
+        currentTime = newTimeInSeconds;
+        isRunning = true;
+        SaveTime();
+        UpdateTimerUI();
+        
+        if (timerText != null) timerText.color = Color.red; 
+    }
+
+    public void ResetTimerColor()
+    {
+        if (timerText != null) timerText.color = Color.white;
+    }
 }

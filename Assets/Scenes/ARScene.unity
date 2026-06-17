@@ -644,6 +644,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1099318657}
     - target: {fileID: 6094997661142338281, guid: 4302f179cb5e4b34093ac8652294fd20, type: 3}
+      propertyPath: binaryKeypadPanelScript
+      value: 
+      objectReference: {fileID: 797620185}
+    - target: {fileID: 6094997661142338281, guid: 4302f179cb5e4b34093ac8652294fd20, type: 3}
       propertyPath: standardMessageButtonText
       value: 
       objectReference: {fileID: 163957972}
@@ -700,6 +704,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd6244fef07709843ba7d2615f178cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CountdownTimer
+--- !u!114 &797620185 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4119038420479566165, guid: 4302f179cb5e4b34093ac8652294fd20, type: 3}
+  m_PrefabInstance: {fileID: 797620180}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a170dd326be45b3bc4beec52fa7d64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &804749884
 GameObject:
   m_ObjectHideFlags: 0

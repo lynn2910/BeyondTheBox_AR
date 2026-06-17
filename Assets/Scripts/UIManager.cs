@@ -66,19 +66,16 @@ public class UIManager : MonoBehaviour
 
     private void UpdateStats()
     {
-        if (playerStats == null)
-        {
-            return;
-        }
+        if (playerStats == null) return;
 
         if (collectedText != null)
         {
-            collectedText.text = $"Collected: {playerStats.CollectedCount}";
+            collectedText.text = $"Found: {playerStats.CollectedCount} / 4";
         }
 
         if (pointsText != null)
         {
-            pointsText.text = $"Points: {playerStats.TotalPoints}";
+            pointsText.gameObject.SetActive(false);
         }
     }
 }

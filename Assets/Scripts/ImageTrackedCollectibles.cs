@@ -21,8 +21,12 @@ public class ImageTrackedCollectibles : MonoBehaviour
         [Tooltip("Unique id used in PlayerPrefs, for example coffee_mug_coin.")]
         public string collectibleId;
 
+        [Tooltip("The collectibleId of the item that MUST be found before this one. Leave empty for the first item.")]
+        public string requiredPreviousId; 
+
         public GameObject prefab;
-        public int points = 10;
+        
+        
         public Vector3 localPosition = new(0f, 0.05f, 0f);
         public Vector3 localEulerAngles = new(90f, 0f, 0f);
         public Vector3 worldScale = new(0.15f, 0.15f, 0.15f);
@@ -169,6 +173,17 @@ public class ImageTrackedCollectibles : MonoBehaviour
             return;
         }
 
+        // NEW LOGIC: Check for prerequisites!
+        if (!string.IsNullOrWhiteSpace(config.requiredPreviousId))
+        {
+            if (playerStats != null && !playerStats.IsCollected(config.requiredPreviousId))
+            {
+                HideObject(trackedImage.trackableId);
+                SetStatus($"Marker found, but you need to find '{config.requiredPreviousId}' first!");
+                return;
+            }
+        }
+
         if (trackedImage.trackingState != TrackingState.Tracking)
         {
             HideObject(trackedImage.trackableId);
@@ -181,9 +196,7 @@ public class ImageTrackedCollectibles : MonoBehaviour
         collectibleObject.transform.SetParent(trackedImage.transform, false);
         collectibleObject.transform.localPosition = config.localPosition;
         collectibleObject.transform.localRotation = Quaternion.Euler(config.localEulerAngles);
-
         SetWorldScale(collectibleObject.transform, config.worldScale);
-
         collectibleObject.SetActive(true);
 
         SetStatus($"Tracking '{imageName}'. Tap collectible.");
@@ -204,14 +217,9 @@ public class ImageTrackedCollectibles : MonoBehaviour
         collectibleObject.transform.SetParent(parent, false);
 
         var instance = collectibleObject.GetComponent<ImageTrackedCollectibleInstance>();
+        if (instance == null) instance = collectibleObject.AddComponent<ImageTrackedCollectibleInstance>();
 
-        if (instance == null)
-        {
-            instance = collectibleObject.AddComponent<ImageTrackedCollectibleInstance>();
-        }
-
-        instance.Configure(config.collectibleId, config.points);
-
+        instance.Configure(config.collectibleId);
         if (collectibleObject.GetComponentInChildren<Collider>() == null)
         {
             var collider = collectibleObject.AddComponent<SphereCollider>();
@@ -245,15 +253,10 @@ public class ImageTrackedCollectibles : MonoBehaviour
         }
 
         var collectible = hit.collider.GetComponentInParent<ImageTrackedCollectibleInstance>();
+        if (collectible == null) return;
 
-        if (collectible == null)
-        {
-            return;
-        }
-
-        var collected = playerStats == null || playerStats.Collect(collectible.CollectibleId, collectible.Points);
-
-        if (!collected)
+        var collected = playerStats == null || playerStats.Collect(collectible.CollectibleId);
+       if (!collected)
         {
             SetStatus($"'{collectible.CollectibleId}' was already collected.");
             collectible.gameObject.SetActive(false);
@@ -261,13 +264,8 @@ public class ImageTrackedCollectibles : MonoBehaviour
         }
 
         collectible.gameObject.SetActive(false);
-
-        // Notify all listeners that a collectible has been collected.
-        // AudioManager can play a sound for this collectible id.
-        // Quest or achievement systems can also react here.
         CollectibleCollected?.Invoke(collectible.CollectibleId);
-
-        SetStatus($"Collected '{collectible.CollectibleId}' (+{collectible.Points}).");
+        SetStatus($"Collected '{collectible.CollectibleId}'!");
     }
 
     private void HideObject(TrackableId trackableId)
@@ -398,11 +396,9 @@ public class ImageTrackedCollectibles : MonoBehaviour
 public class ImageTrackedCollectibleInstance : MonoBehaviour
 {
     public string CollectibleId { get; private set; }
-    public int Points { get; private set; }
 
-    public void Configure(string collectibleId, int points)
+    public void Configure(string collectibleId)
     {
         CollectibleId = collectibleId;
-        Points = points;
     }
 }

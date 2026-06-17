@@ -61,8 +61,8 @@ MonoBehaviour:
       m_GuidLow: 4643352149397578453
       m_GuidHigh: 9245044324308222120
     m_SerializedTextureGuid:
-      m_GuidLow: 9575696868610667728
-      m_GuidHigh: 14425731798774289659
+      m_GuidLow: 336773662864065035
+      m_GuidHigh: 3953688078899206955
     m_Size: {x: 0.075, y: 0.075}
     m_SpecifySize: 1
     m_Name: first_marker

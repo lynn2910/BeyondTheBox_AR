@@ -514,32 +514,32 @@ MonoBehaviour:
   collectibles:
   - imageName: iot_wall
     collectibleId: iot_wall
-    prefab: {fileID: 3219100132830163551, guid: bfbf2e8ba019245148ca1709095f4007, type: 3}
-    points: 1
+    requiredPreviousId: politechnika_logo
+    prefab: {fileID: 6951507932709293649, guid: c5b567d5c880e4593b094bb6ff43adb5, type: 3}
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 90, y: 0, z: 0}
-    worldScale: {x: 0.15, y: 0.15, z: 0.15}
+    worldScale: {x: 0.007, y: 0.007, z: 0.007}
   - imageName: politechnika_logo
     collectibleId: politechnika_logo
-    prefab: {fileID: 3219100132830163551, guid: bfbf2e8ba019245148ca1709095f4007, type: 3}
-    points: 1
+    requiredPreviousId: first_marker
+    prefab: {fileID: 8462021342770022434, guid: 6ef2d4a36a0414131a08cb6ae9c44ca9, type: 3}
     localPosition: {x: 0, y: 0, z: 0}
-    localEulerAngles: {x: 90, y: 0, z: 0}
-    worldScale: {x: 0.15, y: 0.15, z: 0.15}
+    localEulerAngles: {x: 0, y: 90, z: 0}
+    worldScale: {x: 0.03, y: 0.03, z: 0.03}
   - imageName: first_marker
     collectibleId: first_marker
-    prefab: {fileID: 3219100132830163551, guid: bfbf2e8ba019245148ca1709095f4007, type: 3}
-    points: 1
+    requiredPreviousId: 
+    prefab: {fileID: 2690783213197924779, guid: 94b446eb05b384e03aba9446241bb37f, type: 3}
     localPosition: {x: 0, y: 0, z: 0}
-    localEulerAngles: {x: 90, y: 0, z: 0}
-    worldScale: {x: 0.15, y: 0.15, z: 0.15}
+    localEulerAngles: {x: 0, y: 90, z: 0}
+    worldScale: {x: 0.05, y: 0.05, z: 0.05}
   - imageName: final_marker
     collectibleId: final_marker
-    prefab: {fileID: 3219100132830163551, guid: bfbf2e8ba019245148ca1709095f4007, type: 3}
-    points: 1
+    requiredPreviousId: iot_wall
+    prefab: {fileID: 76282178308140651, guid: 21dedf6b95a8f47f2947df08c0aac040, type: 3}
     localPosition: {x: 0, y: 0, z: 0}
-    localEulerAngles: {x: 90, y: 0, z: 0}
-    worldScale: {x: 0.15, y: 0.15, z: 0.15}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    worldScale: {x: 0.05, y: 0.05, z: 0.05}
 --- !u!1001 &797620180
 PrefabInstance:
   m_ObjectHideFlags: 0

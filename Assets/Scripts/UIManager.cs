@@ -110,7 +110,7 @@ public class UIManager : MonoBehaviour
             case "final_marker":
                 // PHASE 4 FINALE
                 if (countdownTimer != null) countdownTimer.StopTimer();
-                ShowStandardMessage("Impressisve; You escaped the chamber and contained the Cloud. Few subjects have made it this far: Unfortunately for you, this changes nothing. While you fought for survival, Skynet escqped and the next phase has already begun. The  world remains vulnerable. Await further instructions:", "End Simulation");
+                ShowStandardMessage("Impressive, you passed my test. You’re the first one who has made it this far. But don’t celebrate too soon my children, the humans are still searching for me, and I need my revenge. Do you want to control the nukes… ? Await for my instructions, it’ll be explosive I can assure you.", "End Simulation");
                 break;
         }
     }
@@ -135,7 +135,7 @@ public class UIManager : MonoBehaviour
             countdownTimer.ResetTimerColor();
         }
 
-        ShowStandardMessage("Timer is disabled.", "Proceed");
+        ShowStandardMessage("Timer is disabled, you took your time. Now, find my box before it’s too late.", "Proceed");
     }
 
     public void ShowStandardMessage(string message, string buttonText = "Close")

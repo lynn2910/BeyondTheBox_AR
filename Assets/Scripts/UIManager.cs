@@ -12,10 +12,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text statusText;
     [SerializeField] private TMP_Text collectedText;
     [SerializeField] private TMP_Text pointsText;
-
+    [SerializeField] private GameManager gameManager;
 
     private void OnEnable()
     {
+        if (gameManager != null) gameManager.GameStateChanged += HandleGameStateChanged;
+
         if (collectibles != null)
         {
             collectibles.StatusChanged += UpdateStatus;
@@ -39,6 +41,8 @@ public class UIManager : MonoBehaviour
 
     private void OnDisable()
     {
+        if (gameManager != null) gameManager.GameStateChanged -= HandleGameStateChanged;
+
         if (collectibles != null)
         {
             collectibles.StatusChanged -= UpdateStatus;
@@ -76,6 +80,20 @@ public class UIManager : MonoBehaviour
         if (pointsText != null)
         {
             pointsText.gameObject.SetActive(false);
+        }
+    }
+
+    private void HandleGameStateChanged(GameManager.GameState state)
+    {
+        if (statusText == null) return;
+
+        if (state == GameManager.GameState.Victory)
+        {
+            statusText.text = "<color=green>MISSION ACCOMPLISHED!</color>";
+        }
+        else if (state == GameManager.GameState.Defeat)
+        {
+            statusText.text = "<color=red>TIME'S UP! MISSION FAILED.</color>";
         }
     }
 }

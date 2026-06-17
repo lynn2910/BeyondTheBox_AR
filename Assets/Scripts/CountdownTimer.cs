@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 
+
+
 public class CountdownTimer : MonoBehaviour
 {
     [Header("UI")]
@@ -11,6 +13,7 @@ public class CountdownTimer : MonoBehaviour
 
     private float currentTime;
     private bool isRunning = true;
+    public event System.Action TimerFinished;
 
     private const string TimerPrefsKey = "RemainingTime";
 
@@ -27,6 +30,11 @@ public class CountdownTimer : MonoBehaviour
         }
 
         UpdateTimerUI();
+    }
+
+    public void StopTimer()
+    {
+        isRunning = false;
     }
 
     private void Update()
@@ -68,9 +76,8 @@ public class CountdownTimer : MonoBehaviour
     private void OnTimerFinished()
     {
         timerText.text = "00:00";
-
         Debug.Log("Time is over!");
-
+        TimerFinished?.Invoke();
     }
 
     public void ResetTimer()

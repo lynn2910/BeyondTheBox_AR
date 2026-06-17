@@ -526,6 +526,20 @@ MonoBehaviour:
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 90, y: 0, z: 0}
     worldScale: {x: 0.15, y: 0.15, z: 0.15}
+  - imageName: first_marker
+    collectibleId: first_marker
+    prefab: {fileID: 3219100132830163551, guid: bfbf2e8ba019245148ca1709095f4007, type: 3}
+    points: 1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 90, y: 0, z: 0}
+    worldScale: {x: 0.15, y: 0.15, z: 0.15}
+  - imageName: final_marker
+    collectibleId: final_marker
+    prefab: {fileID: 3219100132830163551, guid: bfbf2e8ba019245148ca1709095f4007, type: 3}
+    points: 1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 90, y: 0, z: 0}
+    worldScale: {x: 0.15, y: 0.15, z: 0.15}
 --- !u!1001 &797620180
 PrefabInstance:
   m_ObjectHideFlags: 0

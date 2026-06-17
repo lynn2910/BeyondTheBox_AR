@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-
     [Header("References")]
     [SerializeField] private ImageTrackedCollectibles collectibles;
     [SerializeField] private PlayerStats playerStats;
@@ -14,8 +13,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text collectedText;
     [SerializeField] private TMP_Text pointsText;
 
+    [Header("Standard Message Panel")]
     [SerializeField] private GameObject standardMessagePanel; 
     [SerializeField] private TMP_Text standardMessageText;
+    [SerializeField] private TMP_Text standardMessageButtonText;
+
+    [Header("Custom Panels")]
     [SerializeField] private KeypadPanel keypadPanelScript;
 
     private void OnEnable()
@@ -71,6 +74,13 @@ public class UIManager : MonoBehaviour
     {
         playerStats.ResetAllProgressInThisApp();
         countdownTimer.ResetTimer();
+        
+        HideAllPanels(); 
+        
+        if (statusText != null)
+        {
+            statusText.text = "Collectibles: Ready";
+        }
     }
 
     private void UpdateStatus(string status)
@@ -121,11 +131,11 @@ public class UIManager : MonoBehaviour
                 break;
                 
             case "politechnika_logo":
-                ShowStandardMessage("You found the Politechnika Logo! Keep going.");
+                ShowStandardMessage("You found the Politechnika Logo! Keep going.", "Continue");
                 break;
 
             case "iot_wall":
-                ShowStandardMessage("Great job! Now locate the final marker.");
+                ShowStandardMessage("Great job! Now locate the final marker.", "Let's Go!");
                 break;
         }
     }
@@ -135,13 +145,23 @@ public class UIManager : MonoBehaviour
     private void HandleKeypadSolved()
     {
         HideAllPanels();
-        ShowStandardMessage("ACCESS GRANTED.\n\nProceed to the IoT Wall.");
+        ShowStandardMessage("ACCESS GRANTED.\n\nProceed to the IoT Wall.", "Acknowledge");
     }
 
-    public void ShowStandardMessage(string message)
+    // UPDATED: Takes an optional second parameter for the button text
+    public void ShowStandardMessage(string message, string buttonText = "Close")
     {
-        standardMessageText.text = message;
-        standardMessagePanel.SetActive(true);
+        if (standardMessageText != null && standardMessagePanel != null)
+        {
+            standardMessageText.text = message;
+            
+            if (standardMessageButtonText != null)
+            {
+                standardMessageButtonText.text = buttonText;
+            }
+
+            standardMessagePanel.SetActive(true);
+        }
     }
 
     public void HideAllPanels()

@@ -643,6 +643,10 @@ PrefabInstance:
       propertyPath: standardMessagePanel
       value: 
       objectReference: {fileID: 1099318657}
+    - target: {fileID: 6094997661142338281, guid: 4302f179cb5e4b34093ac8652294fd20, type: 3}
+      propertyPath: standardMessageButtonText
+      value: 
+      objectReference: {fileID: 163957972}
     - target: {fileID: 6480343039308848594, guid: 4302f179cb5e4b34093ac8652294fd20, type: 3}
       propertyPath: m_Name
       value: UI Variant

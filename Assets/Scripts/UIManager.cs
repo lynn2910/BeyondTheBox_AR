@@ -8,11 +8,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private ImageTrackedCollectibles collectibles;
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private CountdownTimer countdownTimer;
+    [SerializeField] private GameManager gameManager;
 
     [SerializeField] private TMP_Text statusText;
     [SerializeField] private TMP_Text collectedText;
     [SerializeField] private TMP_Text pointsText;
-    [SerializeField] private GameManager gameManager;
+
+    [SerializeField] private GameObject standardMessagePanel; 
+    [SerializeField] private TMP_Text standardMessageText;
+    [SerializeField] private KeypadPanel keypadPanelScript;
 
     private void OnEnable()
     {
@@ -21,11 +25,17 @@ public class UIManager : MonoBehaviour
         if (collectibles != null)
         {
             collectibles.StatusChanged += UpdateStatus;
+            collectibles.CollectibleCollected += HandleItemCollected;
         }
 
         if (playerStats != null)
         {
             playerStats.StatsChanged += UpdateStats;
+        }
+
+        if (keypadPanelScript != null)
+        {
+            keypadPanelScript.OnKeypadSolved += HandleKeypadSolved; 
         }
     }
 
@@ -46,12 +56,15 @@ public class UIManager : MonoBehaviour
         if (collectibles != null)
         {
             collectibles.StatusChanged -= UpdateStatus;
+            collectibles.CollectibleCollected -= HandleItemCollected;
         }
 
         if (playerStats != null)
         {
             playerStats.StatsChanged -= UpdateStats;
         }
+
+        if (keypadPanelScript != null) keypadPanelScript.OnKeypadSolved -= HandleKeypadSolved;
     }
 
     public void ResetStats()
@@ -95,5 +108,45 @@ public class UIManager : MonoBehaviour
         {
             statusText.text = "<color=red>TIME'S UP! MISSION FAILED.</color>";
         }
+    }
+
+    private void HandleItemCollected(string collectibleId)
+    {
+        HideAllPanels();
+
+        switch (collectibleId)
+        {
+            case "first_marker":
+                keypadPanelScript.gameObject.SetActive(true); 
+                break;
+                
+            case "politechnika_logo":
+                ShowStandardMessage("You found the Politechnika Logo! Keep going.");
+                break;
+
+            case "iot_wall":
+                ShowStandardMessage("Great job! Now locate the final marker.");
+                break;
+        }
+    }
+
+    // --- PANEL CONTROLS ---
+
+    private void HandleKeypadSolved()
+    {
+        HideAllPanels();
+        ShowStandardMessage("ACCESS GRANTED.\n\nProceed to the IoT Wall.");
+    }
+
+    public void ShowStandardMessage(string message)
+    {
+        standardMessageText.text = message;
+        standardMessagePanel.SetActive(true);
+    }
+
+    public void HideAllPanels()
+    {
+        if (standardMessagePanel != null) standardMessagePanel.SetActive(false);
+        if (keypadPanelScript != null) keypadPanelScript.gameObject.SetActive(false);
     }
 }

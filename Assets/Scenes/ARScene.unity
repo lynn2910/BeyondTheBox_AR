@@ -119,55 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &165925630
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 165925631}
-  - component: {fileID: 165925632}
-  m_Layer: 0
-  m_Name: ObjectPlacer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &165925631
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 165925630}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.7002997, y: -0.41455212, z: 0.6952045}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &165925632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 165925630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e64fd14ec91064420b00ceee2de634c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  raycastManager: {fileID: 795676340}
-  prefabToPlace: {fileID: 919948749094348633, guid: 242071751bd1644fab409386c06bb1dc, type: 3}
-  addBlobShadow: 1
-  shadowSize: 0.65
-  shadowOpacity: 0.68
 --- !u!1 &294467486
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,17 +512,17 @@ MonoBehaviour:
   playerStats: {fileID: 804749886}
   showDebugText: 0
   collectibles:
-  - imageName: logo
-    collectibleId: I
+  - imageName: iot_wall
+    collectibleId: iot_wall
     prefab: {fileID: 3219100132830163551, guid: bfbf2e8ba019245148ca1709095f4007, type: 3}
-    points: 100
+    points: 1
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 90, y: 0, z: 0}
     worldScale: {x: 0.15, y: 0.15, z: 0.15}
-  - imageName: tadeusz-kosciuszko
-    collectibleId: II
+  - imageName: politechnika_logo
+    collectibleId: politechnika_logo
     prefab: {fileID: 3219100132830163551, guid: bfbf2e8ba019245148ca1709095f4007, type: 3}
-    points: 1000
+    points: 1
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 90, y: 0, z: 0}
     worldScale: {x: 0.15, y: 0.15, z: 0.15}
@@ -1167,6 +1118,5 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 795676339}
   - {fileID: 1687969494}
-  - {fileID: 165925631}
   - {fileID: 804749885}
   - {fileID: 797620180}
